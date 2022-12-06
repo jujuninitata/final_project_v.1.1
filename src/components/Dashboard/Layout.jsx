@@ -70,7 +70,7 @@ const employeeNav = [
     link: '/inbox',
   },
   {
-    title: 'Employee',
+    title: 'Profile',
     icon: FaUserAlt,
     link: '/employee',
   },
@@ -119,7 +119,7 @@ const hrNav = [
     link: '/inbox',
   },
   {
-    title: 'Employee',
+    title: 'Profile',
     icon: FaUserAlt,
     link: '/employee',
   },
@@ -423,8 +423,9 @@ const Layout = ({ children }) => {
                       </HStack>
                     </MenuButton>
                     <MenuList bg={'white'} borderColor={'gray.200'}>
-                      <MenuItem>Profile</MenuItem>
-                      <MenuItem>Settings</MenuItem>
+                      <Link to={'/employee'}>
+                        <MenuItem>Profile</MenuItem>
+                      </Link>
                       <MenuItem>Inbox</MenuItem>
                       <MenuDivider />
                       <Link onClick={logout}>

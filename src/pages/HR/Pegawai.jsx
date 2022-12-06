@@ -46,10 +46,9 @@ const Pegawai = () => {
             <Tr>
               <Th>Nama</Th>
               <Th>NIP</Th>
+              <Th>Email</Th>
               <Th>Unit Kerja</Th>
-              <Th>Penempatan</Th>
               <Th>Jabatan</Th>
-              <Th>Status</Th>
               <Th>Action</Th>
             </Tr>
           </Thead>
@@ -59,13 +58,12 @@ const Pegawai = () => {
                 <Tr key={item.id}>
                   <Td>{item.nama}</Td>
                   <Td>{item.nip}</Td>
+                  <Td>{item.email}</Td>
                   <Td>{item.kodeunit}</Td>
-                  <Td>{item.penempatan}</Td>
                   <Td>{item.jabatan}</Td>
-                  <Td>{item.status}</Td>
                   <Td>
                     <HStack>
-                      <MdVisibility />
+                      <MdVisibility  onClick={() => navigate(`/hr/pegawai/detail/${item.userid}`)}/>
                       <AiFillEdit />
                       <FiTrash2 />
                     </HStack>

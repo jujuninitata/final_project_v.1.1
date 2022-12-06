@@ -4,7 +4,7 @@ import Layout from '../../components/Dashboard/Layout';
 const Izin = () => {
   return (
     <Layout>
-      <div>Izin</div>
+      <div>Ini adalah Halaman Izin untuk User</div>
     </Layout>
   );
 };

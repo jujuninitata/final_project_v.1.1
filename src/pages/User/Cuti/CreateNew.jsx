@@ -7,7 +7,6 @@ import Layout from '../../../components/Dashboard/Layout';
 import { getAllJenisCuti } from '../../../services/jenisCutiService';
 import { insertTrxCuti, getAllTrxCuti, getTrxCutiById, updateTrxCuti } from '../../../services/trxCutiService';
 import useGlobal from '../../../store/global';
-import { getAllAgama } from '../../../services/masterservice';
 
 const CreateNew = () => {
   const session = useGlobal((state) => state.session);
@@ -16,7 +15,6 @@ const CreateNew = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [durasiCuti, setDurasiCuti] = useState(0);
   const [jenisCuti, setJenisCuti] = useState([]);
-  const [listAgama, setListAgama] = useState([]);
   const {
     handleSubmit,
     register,
@@ -35,9 +33,6 @@ const CreateNew = () => {
       console.log(res.data);
       setJenisCuti(res.data);
     });
-    getAllAgama().then((res) => {
-      setListAgama(res.data);
-    })
   }, []);
 
   const onSubmit = (data) => {

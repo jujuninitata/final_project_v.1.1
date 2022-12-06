@@ -64,12 +64,39 @@ const tambahProfile = async (req, res) => {
   });
 };
 
+
 const getAllProfile = async (req, res) => {
-  const resGet = await db.profile.findAll();
-  return res.status(200).json({
-    message: 'All data',
-    data: resGet,
-  });
+
+  db.profile
+    .findAll()
+    .then((profile) => {
+      const result = profile.map(async (item) => {
+        const divisi = await getUnitByKodeunit(item.kodeunit)
+        const jabatan = await getjabatanByKodejabatan(item.jabatan)
+        const Newagama = await getagamaByKodeagama(item.agama)
+        const NewProvinsi = await getprovinsiByKodeprovinsi(item.kodeprovinsi)
+        const Newkota = await getkotaByKodekota(item.kodekota)
+        const NewKecamatan = await getkecamatanByKodekecamatan(item.kodekecamatan)
+        const NewKelurahan = await getkelurahanByKodekelurahan(item.kodekelurahan)
+        return {
+          ...item.dataValues,
+          kodeunit:divisi.namaunit,
+          jabatan:jabatan.namajabatan,
+          agama:Newagama.agama,
+          provinsi:NewProvinsi.provinsi,
+          kota:Newkota.kota,
+          kecamatan:NewKecamatan.kecamatan,
+          kelurahan:NewKelurahan.kelurahan
+        };
+      });
+      Promise.all(result).then((data) => {
+        res.status(200).json({ message: 'data Profile by User id', data: data });
+      });
+      // res.status(200).json({ message: 'data by id', data: result });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message });
+    });
 };
 
 const getProfileById = async (req, res) => {
@@ -88,15 +115,12 @@ const getProfileById = async (req, res) => {
 
 const getProfileByUserId = async (req, res) => {
   const userid = req.params.userid;
-
   db.profile
     .findAll({
       where: { userid: userid },
     })
     .then((profile) => {
       const result = profile.map(async (item) => {
-        // const jenisCuti = await getJenisCutiById(item.idjenisCUti);
-        // const profile = await getProfileByUserId(item.userid);
         const divisi = await getUnitByKodeunit(item.kodeunit)
         const jabatan = await getjabatanByKodejabatan(item.jabatan)
         const Newagama = await getagamaByKodeagama(item.agama)

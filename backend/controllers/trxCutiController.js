@@ -57,9 +57,9 @@ const getAllTrxCuti = (req, res) => {
         return {
           ...item.dataValues,
           jeniscuti: jenisCuti.namacuti,
-          nama: profile.nama,
-          nip: profile.nip,
-          divisi: profile.kodeunit,
+          nama: profile?.nama,
+          nip: profile?.nip,
+          divisi: profile?.kodeunit,
         };
       });
       Promise.all(result).then((data) => {

@@ -1,8 +1,9 @@
-import { Heading, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react';
+import { Heading, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr,Card,CardBody, Flex,Spacer,Button } from '@chakra-ui/react';
 import React from 'react';
-import useGlobal from '../store/global';
-import Layout from '../components/Dashboard/Layout';
-import { getProfilebByUserId} from '../services/profileService';
+import useGlobal from '../../store/global';
+import Layout from '../../components/Dashboard/Layout';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getProfilebByUserId} from '../../services/profileService';
 import { useEffect, useState } from 'react';
 
 const jeniskelamin = {
@@ -13,14 +14,17 @@ const statusnikah = {
   1: 'Menikah',
   2: 'Belum Menikah'
 };
-const Employee = () => {
+const DetailEmployee = () => {
   
   const session = useGlobal((state) => state.session);
+  let { userId } = useParams();
   const [detail, setDetail] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
-    // console.log(session)
-    getProfilebByUserId(session.userid).then((res) => {
-      setDetail(res.data[0]);
+    //console.log(userId)
+    getProfilebByUserId(userId).then((res) => {
+     setDetail(res.data[0]);
+      //setDetail(res.data);
     });
   }, []);
 
@@ -138,6 +142,19 @@ const Employee = () => {
             
           </Tbody>
         </Table>
+        
+        <Card border={'0px'} borderColor={'blackAlpha.300'}>
+            <CardBody>
+           
+              <Flex>
+                <Spacer />
+                <div>
+                  <Button onClick={() => navigate('/hr/pegawai')}>Back</Button>
+                  
+                </div>
+              </Flex>
+            </CardBody>
+          </Card>
       </TableContainer>
       )}
     </Layout>
@@ -145,4 +162,4 @@ const Employee = () => {
   );
 };
 
-export default Employee;
+export default DetailEmployee;

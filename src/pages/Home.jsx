@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <div>Home</div>
+      <div>Ini adalah Homepage</div>
     </Layout>
   );
 };

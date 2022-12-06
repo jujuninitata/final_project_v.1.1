@@ -4,7 +4,7 @@ import Layout from '../../components/Dashboard/Layout';
 const IzinHR = () => {
   return (
     <Layout>
-      <div>IzinHR</div>
+      <div>Ini adalah Halaman Izin untuk Human Resource</div>
     </Layout>
   );
 };

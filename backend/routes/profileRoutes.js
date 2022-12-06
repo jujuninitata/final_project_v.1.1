@@ -4,4 +4,5 @@ router.post('/', tambahProfile);
 router.get('/', getAllProfile);
 router.get('/:id', getProfileById);
 router.get('/user/:userid', getProfileByUserId);
+router.get('/detail/:userid', getProfileByUserId);
 module.exports = router;

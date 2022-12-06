@@ -4,7 +4,7 @@ import Layout from '../../components/Dashboard/Layout';
 const Lembur = () => {
   return (
     <Layout>
-      <div>Lembur</div>
+      <div>Ini adalah Halaman Lembur untuk User</div>
     </Layout>
   );
 };

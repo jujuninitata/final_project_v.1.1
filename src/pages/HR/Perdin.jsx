@@ -4,7 +4,7 @@ import Layout from '../../components/Dashboard/Layout';
 const PerdinHR = () => {
   return (
     <Layout>
-      <div>PerdinHR</div>
+      <div>Ini adalah Halaman Perjalanan Dinas untuk Human Resource</div>
     </Layout>
   );
 };

@@ -4,7 +4,7 @@ import Layout from '../../components/Dashboard/Layout';
 const Diklat = () => {
   return (
     <Layout>
-      <div>Diklat</div>
+      <div>Ini adalah Halaman Diklat untuk User</div>
     </Layout>
   );
 };

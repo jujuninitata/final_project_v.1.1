@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const {tambahagama,tambahjabatan,tambahunit,tambahprovinsi,tambahkota,tambahkecamatan, tambahkelurahan,getUnitByKodeunit,getAllAgama} = require("../controllers/masterController");
+//const { getAllUnit } = require("../../src/services/masterservice");
+const {tambahagama,tambahjabatan,tambahunit,tambahprovinsi,tambahkota,tambahkecamatan, tambahkelurahan,getAllUnit,getAllAgama,getAllJabatan,getAllRole, getAllProvinsi, getAllKota, getAllKecamatan, getAllKelurahan} = require("../controllers/masterController");
 router.post("/tambahagama", tambahagama);
 router.post("/tambahjabatan", tambahjabatan);
 router.post("/tambahunit", tambahunit);
@@ -8,6 +9,13 @@ router.post("/tambahkota", tambahkota);
 router.post("/tambahkecamatan",tambahkecamatan);
 router.post("/tambahkelurahan",tambahkelurahan);
 router.get("/agama", getAllAgama);
+router.get("/unit", getAllUnit);
+router.get("/jabatan", getAllJabatan);
+router.get("/role", getAllRole);
+router.get("/provinsi", getAllProvinsi);
+router.get("/kota", getAllKota);
+router.get("/kecamatan", getAllKecamatan);
+router.get("/kelurahan", getAllKelurahan);
 
 
 

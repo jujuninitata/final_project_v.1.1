@@ -5,7 +5,7 @@ import Layout from '../../components/Dashboard/Layout';
 const DiklatHR = () => {
   return (
     <Layout>
-      <div>DiklatHR</div>
+      <div>Ini adalah Halaman Diklat untuk Human Resource</div>
     </Layout>
   );
 };

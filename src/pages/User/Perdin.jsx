@@ -4,7 +4,7 @@ import Layout from '../../components/Dashboard/Layout';
 const Perdin = () => {
   return (
     <Layout>
-      <div>Perdin</div>
+      <div>Ini adalah Halaman Perjalanan Dinas untuk User</div>
     </Layout>
   );
 };

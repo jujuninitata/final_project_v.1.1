@@ -27,6 +27,7 @@ const getAllAgama = (req, res) => {
     });
 }
 
+
 const tambahjabatan = async (req, res) =>
 {
     const { kodejabatan,namajabatan,status} = req.body;
@@ -35,6 +36,16 @@ const tambahjabatan = async (req, res) =>
         message: "register data jabatan successfully!",
         data: resAdd,
     })
+}
+const getAllJabatan = (req, res) => {
+  db.jabatan
+    .findAll()
+    .then((jabatan) => {
+      res.status(200).json({ message: 'All data Jabatan', data: jabatan });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message });
+    });
 }
 
 const getjabatanByKodejabatan = async (kodejabatan) => {
@@ -53,7 +64,16 @@ const tambahunit = async (req, res) =>
         data: resAdd,
     })
 }
-
+const getAllUnit = (req, res) => {
+  db.unitkerja
+    .findAll()
+    .then((unit) => {
+      res.status(200).json({ message: 'All data', data: unit });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message });
+    });
+}
 
 const getUnitByKodeunit = async (kodeunit) => {
     const unitkerja = await db.unitkerja.findOne({
@@ -72,6 +92,17 @@ const tambahprovinsi = async (req, res) =>
     })
 }
 
+const getAllProvinsi = (req, res) => {
+  db.provinsi
+    .findAll()
+    .then((provinsi) => {
+      res.status(200).json({ message: 'All data', data: provinsi });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message });
+    });
+}
+
 const getprovinsiByKodeprovinsi = async (kodeprovinsi) => {
     const provinsi = await db.provinsi.findOne({
       where: { kodeprovinsi: kodeprovinsi },
@@ -88,6 +119,18 @@ const tambahkota = async (req, res) =>
         data: resAdd,
     })
 }
+
+const getAllKota = (req, res) => {
+  db.kota
+    .findAll()
+    .then((kota) => {
+      res.status(200).json({ message: 'All data', data: kota });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message });
+    });
+}
+
 const getkotaByKodekota = async (kodekota) => {
     const kota = await db.kota.findOne({
       where: { kodekota: kodekota },
@@ -104,6 +147,17 @@ const tambahkecamatan = async (req, res) =>
         data: resAdd,
     })
 }
+
+const getAllKecamatan = (req, res) => {
+  db.kecamatan
+    .findAll()
+    .then((kecamatan) => {
+      res.status(200).json({ message: 'All data', data: kecamatan });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message });
+    });
+}
 const getkecamatanByKodekecamatan = async (kodekecamatan) => {
     const kecamatan = await db.kecamatan.findOne({
       where: { kodekecamatan: kodekecamatan },
@@ -119,10 +173,31 @@ const tambahkelurahan = async (req, res) =>
         data: resAdd,
     })
 }
+const getAllKelurahan = (req, res) => {
+  db.kelurahan
+    .findAll()
+    .then((kelurahan) => {
+      res.status(200).json({ message: 'All data', data: kelurahan });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message });
+    });
+}
 const getkelurahanByKodekelurahan = async (kodekelurahan) => {
     const kelurahan = await db.kelurahan.findOne({
       where: { kodekelurahan: kodekelurahan },
     });
     return kelurahan;
   };
-module.exports = {tambahagama,tambahjabatan, tambahunit,tambahprovinsi,tambahkota, tambahkecamatan, tambahkelurahan,getUnitByKodeunit,getjabatanByKodejabatan, getagamaByKodeagama, getprovinsiByKodeprovinsi, getkotaByKodekota, getkecamatanByKodekecamatan, getkelurahanByKodekelurahan,getAllAgama}
+
+const getAllRole = (req, res) => {
+    db.role
+      .findAll()
+      .then((role) => {
+        res.status(200).json({ message: 'All data', data: role });
+      })
+      .catch((err) => {
+        res.status(500).json({ message: err.message });
+      });
+  }
+module.exports = {tambahagama,tambahjabatan, tambahunit,tambahprovinsi,tambahkota, tambahkecamatan, tambahkelurahan,getUnitByKodeunit,getjabatanByKodejabatan, getagamaByKodeagama, getprovinsiByKodeprovinsi, getkotaByKodekota, getkecamatanByKodekecamatan, getkelurahanByKodekelurahan,getAllAgama, getAllUnit, getAllJabatan,getAllRole, getAllProvinsi, getAllKota, getAllKecamatan, getAllKelurahan}

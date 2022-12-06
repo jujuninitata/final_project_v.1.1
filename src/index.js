@@ -26,7 +26,7 @@ import DiklatHR from './pages/HR/Diklat';
 import Pegawai from './pages/HR/Pegawai';
 import Approval from './pages/HR/Cuti/Approval';
 import Detail from './pages/HR/Cuti/detail';
-import DetailUser from './pages/User/Cuti/detail';
+import DetailUser from './pages/HR/PegawaiDetail';
 import CreateNewPegawai from './pages/HR/Pegawai/CreateNew';
 
 const theme = extendTheme({
@@ -138,6 +138,10 @@ const router = createBrowserRouter([
   {
     path: '/hr/pegawai/create',
     element: <CreateNewPegawai />,
+  },
+  {
+    path: '/hr/pegawai/detail/:userId',
+    element: <DetailUser />,
   },
 ]);
 
