@@ -1,14 +1,21 @@
 import { Button, Heading, Input, Select, Table, TableContainer, Tbody, Td, Tr, useToast } from '@chakra-ui/react';
 import { SingleDatepicker } from 'chakra-dayzed-datepicker';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../../components/Dashboard/Layout';
 import { insertProfile } from '../../../services/profileService';
+import { getAllAgama } from '../../../services/masterservice';
 
 const CreateNewPegawai = () => {
   const navigate = useNavigate();
   const [tanggalLahir, setTanggalLahir] = useState(new Date());
+  const [listAgama, setListAgama] = useState([]);
+
+  useEffect(() => {
+    getAllAgama().then(res => setListAgama(res.data));
+  }, [])
+
   const {
     handleSubmit,
     register,
@@ -126,12 +133,15 @@ const CreateNewPegawai = () => {
                 <Td>:</Td>
                 <Td>
                   <Select placeholder='Pilih Agama' {...register('agama', { required: true })}>
-                    <option value={1}>Islam</option>
+                    {/* <option value={1}>Islam</option>
                     <option value={2}>Kristen Protestan</option>
                     <option value={3}>Kristen Katolik</option>
                     <option value={4}>Hindu</option>
                     <option value={5}>Budha</option>
-                    <option value={6}>Konghuchu</option>
+                    <option value={6}>Konghuchu</option> */}
+                    {listAgama.map(item => (
+                      <option key={item.id} value={item.kodeagama}>{item.agama}</option>
+                    ))}
                   </Select>
                 </Td>
               </Tr>
@@ -142,6 +152,30 @@ const CreateNewPegawai = () => {
                   <Select placeholder='Pilih Role' {...register('roleId', { required: true })}>
                     <option value={1}>User</option>
                     <option value={2}>HR</option>
+                  </Select>
+                </Td>
+              </Tr>
+              <Tr>
+                <Td>Unit Kerja</Td>
+                <Td>:</Td>
+                <Td>
+                  <Select placeholder='Pilih Unit Kerja' {...register('kodeunit', { required: true })}>
+                    <option value={1}>Divisi Human Capital</option>
+                    <option value={2}>Divisi Information Technology</option>
+                    <option value={3}>Divisi Umum</option>
+                    <option value={4}>Divisi Hukum</option>
+                  </Select>
+                </Td>
+              </Tr>
+              <Tr>
+                <Td>Jabatan</Td>
+                <Td>:</Td>
+                <Td>
+                  <Select placeholder='Pilih Jabatan' {...register('jabatan', { required: true })}>
+                    <option value={1}>Staff</option>
+                    <option value={2}>Officer</option>
+                    <option value={3}>Manager</option>
+                    <option value={4}>Group Head</option>
                   </Select>
                 </Td>
               </Tr>

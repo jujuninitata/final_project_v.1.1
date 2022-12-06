@@ -1,6 +1,8 @@
 const db = require('./../models');
 const { Op } = require('sequelize');
 const { v4: uuidv4 } = require('uuid');
+const { getUnitByKodeunit } = require('./masterController');
+
 
 const insertTrxCuti = (req, res) => {
   const {
@@ -103,12 +105,14 @@ const getTrxCutiByCutiId = (req, res) => {
       const jenisCuti = await getJenisCutiById(trxCuti.idjenisCUti);
       const profile = await getProfileByUserId(trxCuti.userid);
       const jatahcuti = await getJatahCutiByUserId(trxCuti.userid);
+      const divisi = await getUnitByKodeunit(profile.kodeunit)
+      
       const result = {
         ...trxCuti.dataValues,
         jeniscuti: jenisCuti.namacuti,
         nama: profile.nama,
         nip: profile.nip,
-        divisi: profile.kodeunit,
+        divisi: divisi.namaunit,
         sisacuti: jatahcuti.sisacuti,
       };
       res.status(200).json({ message: 'data by id', data: result });
@@ -218,10 +222,12 @@ const getTrxCutiByUserId = async (req, res) => {
       const result = trxCuti.map(async (item) => {
         const jenisCuti = await getJenisCutiById(item.idjenisCUti);
         const profile = await getProfileByUserId(item.userid);
+        // const divisi = await getUnitByKodeunit(profile.kodeunit)
         return {
           ...item.dataValues,
           jeniscuti: jenisCuti.namacuti,
-          nama: profile.nama,
+          nama: profile.nama
+          // kodeunit:divisi.namaunit
         };
       });
       Promise.all(result).then((data) => {
@@ -303,8 +309,8 @@ const deleteTrxCuti = (req, res) => {
     .destroy({
       where: { id: id },
     })
-    .then((alamat) => {
-      res.status(200).json({ message: 'TrxCuti deleted', data: alamat });
+    .then((deletecuti) => {
+      res.status(200).json({ message: 'TrxCuti deleted', data: deletecuti });
     })
     .catch((err) => {
       res.status(500).json({ message: err.message });

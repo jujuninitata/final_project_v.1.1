@@ -28,7 +28,7 @@ const status = {
   3: 'Rejected',
 };
 
-const Approval = () => {
+const DetailCuti = () => {
   const session = useGlobal((state) => state.session);
   let { cutiId } = useParams();
   const [detail, setDetail] = useState({});
@@ -36,62 +36,27 @@ const Approval = () => {
   const toast = useToast({
     position: 'top',
   });
+  
+  
+
   const navigate = useNavigate();
   useEffect(() => {
     getTrxCutiDetail(cutiId).then((res) => {
       console.log(res.data);
-      //res.data.status = cekStatus(res.data.status)
-      console.log(res.data.status)
       setDetail(res.data);
     });
   }, []);
+
 
   const handleChange = (event) => {
     const value = event.target.value;
     setCatatan(value);
   };
 
-  const handleApprove = () => {
-    const payload = {
-      approveby: session.userid,
-      approvalreason: catatan,
-    };
-    approveCuti(cutiId, payload).then((res) => {
-      console.log(res);
-      toast({
-        title: 'Success.',
-        description: 'Pengajuan berhasil diapprove.',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      });
-      navigate('/hr/cuti');
-      // window.location.reload();
-    });
-  };
-
-  const handleReject = () => {
-    const payload = {
-      approveby: session.userid,
-      approvalreason: catatan,
-    };
-    rejectCuti(cutiId, payload).then((res) => {
-      console.log(res);
-      toast({
-        title: 'Success.',
-        description: 'Pengajuan berhasil direject.',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      });
-      navigate('/hr/cuti');
-      // window.location.reload();
-    });
-  };
 
   return (
     <Layout>
-      <Heading>Approval Pengajuan Cuti</Heading>
+      <Heading>Detail Pengajuan Cuti</Heading>
       {detail && (
         <TableContainer mt={8} w={800}>
           <Table variant='simple'>
@@ -112,7 +77,7 @@ const Approval = () => {
                 <Td>{detail.divisi}</Td>
               </Tr>
               <Tr>
-                <Td>Jenis Cuti</Td>
+                <Td>Jenis Cutiiiii</Td>
                 <Td>:</Td>
                 <Td>{detail.jeniscuti}</Td>
               </Tr>
@@ -143,43 +108,25 @@ const Approval = () => {
                 <Td>:</Td>
                 <Td>{detail.alasan}</Td>
               </Tr>
-              <Tr>
+               <Tr>
                 <Td>Status</Td>
                 <Td>:</Td>
                 <Td>{status[detail.status]}</Td>
+                {/* <Td>{Detailstatus}</Td> */}
               </Tr>
+              
+              
             </Tbody>
-            {/* <Tfoot>
-            <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-              <Th isNumeric>multiply by</Th>
-            </Tr>
-          </Tfoot> */}
+            
           </Table>
-          <Card border={'1px'} borderColor={'blackAlpha.300'}>
+          <Card border={'0px'} borderColor={'blackAlpha.300'}>
             <CardBody>
-              <Table variant='simple'>
-                <Tbody>
-                  <Tr>
-                    <Td valign='top'>Catatan</Td>
-                    <Td valign='top'>:</Td>
-                    <Td valign='top'>
-                      <Textarea onChange={handleChange} border={'1px'} placeholder='' />
-                    </Td>
-                  </Tr>
-                </Tbody>
-              </Table>
+           
               <Flex>
                 <Spacer />
                 <div>
                   <Button onClick={() => navigate('/hr/cuti')}>Back</Button>
-                  <Button colorScheme='green' ml={4} onClick={() => handleApprove()}>
-                    Setujui
-                  </Button>
-                  <Button colorScheme='red' ml={4} onClick={() => handleReject()}>
-                    Tolak
-                  </Button>
+                  
                 </div>
               </Flex>
             </CardBody>
@@ -190,4 +137,4 @@ const Approval = () => {
   );
 };
 
-export default Approval;
+export default DetailCuti;

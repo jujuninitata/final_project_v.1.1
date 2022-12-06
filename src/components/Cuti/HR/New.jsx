@@ -31,7 +31,7 @@ const New = ({ data }) => {
                     <Button colorScheme='green' onClick={() => navigate(`/hr/cuti/approval/${item.idcuti}`)}>
                       Persetujuan
                     </Button>
-                    <Button colorScheme='blue'>Detail</Button>
+                    <Button colorScheme='blue' onClick={() => navigate(`/hr/cuti/detail/${item.idcuti}`)}>Detail</Button>
                   </HStack>
                 </Box>
               </Flex>

@@ -18,4 +18,10 @@ const insertProfile = (body) => {
   return response;
 };
 
-export { getAllProfile, insertProfile };
+const getProfilebByUserId = async (userid) => {
+  const response = await get(`profile/user/${userid}`);
+  console.log(response)
+  return response;
+};
+
+export { getAllProfile, insertProfile,getProfilebByUserId };

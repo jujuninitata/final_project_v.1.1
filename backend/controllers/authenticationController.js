@@ -30,7 +30,7 @@ const register = async (req, res) => {
   const checkData = await db.profile.findOne({ where: { nip, email, userid } });
   console.log(checkData);
   if (!checkData) {
-    return res.status(422).json({ message: 'NIP tidak ditemukan!' });
+    return res.status(422).json({ message: 'User anda tidak ditemukan!' });
   }
   //validasi user ada atau tidak
   const validateEmail = await db.user.findOne({ where: { email } });
@@ -38,7 +38,7 @@ const register = async (req, res) => {
     return res.status(422).json({ message: 'email already exist!' });
   }
   if (password !== confirmPassword) {
-    return res.status(400).json({ message: 'Password dan Confirm Password tidak sama!' });
+    return res.status(422).json({ message: 'Password dan Confirm Password tidak sama!' });
   }
   const salt = await bcrypt.genSalt();
   const hashPassword = await bcrypt.hash(password, salt);

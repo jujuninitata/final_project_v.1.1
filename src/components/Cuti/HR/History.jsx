@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardBody, Flex, Heading, HStack, Spacer, Stack, Tag, Text } from '@chakra-ui/react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const status = {
   1: 'Permohonan Cuti Baru',
@@ -14,6 +15,8 @@ const colorScheme = {
 };
 
 const History = ({ data }) => {
+  
+  const navigate = useNavigate();
   return (
     <Stack spacing={8}>
       {data &&
@@ -38,7 +41,7 @@ const History = ({ data }) => {
                 <Spacer />
                 <Box>
                   <HStack>
-                    <Button colorScheme='blue'>Detail</Button>
+                  <Button colorScheme='blue' onClick={() => navigate(`/hr/cuti/detail/${item.idcuti}`)}>Detail</Button>
                   </HStack>
                 </Box>
               </Flex>

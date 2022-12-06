@@ -25,6 +25,8 @@ import PerdinHR from './pages/HR/Perdin';
 import DiklatHR from './pages/HR/Diklat';
 import Pegawai from './pages/HR/Pegawai';
 import Approval from './pages/HR/Cuti/Approval';
+import Detail from './pages/HR/Cuti/detail';
+import DetailUser from './pages/User/Cuti/detail';
 import CreateNewPegawai from './pages/HR/Pegawai/CreateNew';
 
 const theme = extendTheme({
@@ -94,6 +96,10 @@ const router = createBrowserRouter([
     element: <CreateNew />,
   },
   {
+    path: '/cuti/detail/:cutiId',
+    element: <DetailUser />,
+  },
+  {
     path: '/lembur',
     element: <Lembur />,
   },
@@ -116,6 +122,10 @@ const router = createBrowserRouter([
   {
     path: '/hr/cuti/approval/:cutiId',
     element: <Approval />,
+  },
+  {
+    path: '/hr/cuti/detail/:cutiId',
+    element: <Detail />,
   },
   {
     path: '/hr/lembur',
